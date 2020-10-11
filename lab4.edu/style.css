@@ -1,0 +1,33 @@
+div.box {
+	width:720px;
+	margin:0px auto;
+	border:solid 1px #000;
+	padding: 15px;
+}
+
+table.query {
+	width:720px;
+	text-align: center;
+    border: 1px solid #ccc;
+	border-spacing: 3px;
+	border-collapse: collapse;
+}
+
+table.query td {
+	border: solid 1px #ccc;
+	padding: 5x;
+}
+
+table.query tr:first-child td {
+	font-weight: bold;
+}
+
+div.form {
+	padding-top: 15px;
+	width: 250px;
+	margin:0px auto;
+}
+
+div.buttons {
+	margin-left: 50px;
+}

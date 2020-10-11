@@ -1,0 +1,83 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.board {
+    width: 440px;
+    height: 440px;
+    background-image: url(../image/grey.jpg);
+    border: 2px solid #000;
+    margin:0px auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.groupAlp {
+    width: 400px;
+    height: 19px;
+    margin: 0px auto;
+}
+
+.markerAlp {
+    width: 50px;
+    height: 19px;
+    float: left;
+    line-height: 19px;
+}
+
+.groupNum {
+    width: 19px;
+    height: 400px;
+    float: left;
+}
+
+.markerNum {
+    width: 19px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.groupAlp, .groupNum {
+    text-align: center;
+}
+
+.groupAlp:last-child {
+    clear:both;
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0px;
+    background-image: url(../image/grey.jpg);
+}
+
+.field {
+    width: 402px;
+    height: 402px;
+    float: left;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+.row {
+    width: 400px;
+    height: 50px;
+}
+
+.colomn {
+    width: 50px;
+    height: 50px;
+    float: left;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+.row:nth-child(odd) .colomn:nth-child(even),
+.row:nth-child(even) .colomn:nth-child(odd) {
+    background-image: url(../image/light.jpg);
+}
+
+.row:nth-child(odd) .colomn:nth-child(odd),
+.row:nth-child(even) .colomn:nth-child(even) {
+    background-image: url(../image/dark.jpg);
+}
