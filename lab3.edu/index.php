@@ -20,7 +20,6 @@ $getTable = function(){
 	}
 };
 
-$insertField();
 $layout($getTable());
 
 ?>
