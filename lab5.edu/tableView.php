@@ -15,15 +15,20 @@ $fieldsTable = function($array){
 };
 
 $formAdd = function($array){
-	echo "<form method='post' action='?action=addtotable&table=" . $_GET['table'] . "'><table>";
+	echo "<form method='post' action='?action=addtotable&table="
+		. $_GET['table'] . "'><table>";
 	for($i = 0, $n = count($array); $i < $n; ++$i)
-		echo "<tr><td>" . $array[$i] . "</td><td><input type='text' name='" . $array[$i] . "'></td></tr>";
-	echo "</table><a href='?action=droptable&table=" . $_GET['table'] . "'>Удалить таблицу</a><input type='submit' value='Добавить'>";
+		echo "<tr><td>" . $array[$i] . "</td><td><input type='text' name='"
+			. $array[$i] . "'></td></tr>";
+	echo "</table><a href='?action=droptable&table=" . $_GET['table']
+		. "'>Удалить таблицу</a><input type='submit' value='Добавить'>";
 };
 
 $tableView = function(){
 	global $link, $rowTable, $fieldsTable, $formAdd;
-	$query = mysqli_query($link, "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='" . $_GET['table'] . "'");
+	$query = mysqli_query($link,
+		"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='"
+		. $_GET['table'] . "'");
 	$result0 = array(); $i = 0;
 	while ($table = mysqli_fetch_row($query))
 		$result0[$i++] = $table[0];

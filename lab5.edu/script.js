@@ -16,3 +16,4 @@ var addLine = function(){
 window.onload = function(){
 	document.getElementById("addLine").onclick = addLine;
 }
+
