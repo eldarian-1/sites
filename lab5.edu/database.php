@@ -35,10 +35,17 @@ $dropTable = function(){
 $addToTable = function(){
 	global $link;
 	$query = "INSERT INTO " . $_GET['table'] . " SET ";
+	$count = 0;
 	foreach ($_POST as $key => $value)
 		if($key != 'table')
-			$query = $query . $key . "=\"" . $value . "\",";
-	$query = mb_substr($query, 0, strlen($query) - 1);
+			++$count;
+	$index = 0;
+	foreach ($_POST as $key => $value)
+		if($key != 'table')
+		{
+			$query = $query . $key . "=\"" . $value . "\"" . ($index != $count - 1 ? "," : "");
+			++$index;
+		}
 	mysqli_query($link, $query);
 };
 
