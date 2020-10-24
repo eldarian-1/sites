@@ -12,7 +12,7 @@ $addLine = function($index){
 $createTable = function(){
 	global $addLine;
 ?><form id="formCreateTable" method="post" action="?action=createTable&count=1">
-<p>Имя базы данных <input type="text" name="name"></p>
+<p>Имя таблицы <input type="text" name="name"></p>
 <table class="query" id="createTable">
 
 	<tr>
