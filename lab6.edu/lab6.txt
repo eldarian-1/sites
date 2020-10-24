@@ -1,10 +1,12 @@
 DROP TRIGGER TriggerInsert;
 DROP TRIGGER TriggerUpdate;
+DROP TRIGGER TriggerDelete;
 DROP TABLE Log;
 
 CREATE TABLE Log
 (IdLog INT AUTO_INCREMENT,
 IdEmployee INT,
+TypeOperation VARCHAR(6),
 Description TEXT,
 OperationDate DATETIME,
 PRIMARY KEY (IdLog));
@@ -12,30 +14,35 @@ PRIMARY KEY (IdLog));
 CREATE TRIGGER TriggerInsert
 AFTER INSERT ON Lab2
 FOR EACH ROW
-	INSERT Log (IdEmployee, Description, OperationDate)
-	VALUES (NEW.EmployeeId, CONCAT('INSERT: ', NEW.FirstName, ' ', NEW.LastName), NOW());
+	INSERT Log (IdEmployee, TypeOperation, Description, OperationDate)
+	VALUES (NEW.EmployeeId, 'INSERT', CONCAT('\"',
+		NEW.FirstName, '\", \"',
+		NEW.LastName, '\", \"',
+		NEW.PhoneNumber, '\", \"',
+		NEW.Salary, '\", \"',
+		NEW.Address, '\", \"',
+		NEW.Expirience, '\"'), NOW());
 
 CREATE TRIGGER TriggerUpdate
 AFTER UPDATE ON Lab2
 FOR EACH ROW
-	INSERT Log (IdEmployee, Description, OperationDate)
-	VALUES (NEW.EmployeeId, CONCAT('UPDATE: ', 
+	INSERT Log (IdEmployee, TypeOperation, Description, OperationDate)
+	VALUES (NEW.EmployeeId, 'UPDATE', CONCAT( 
 		IF(OLD.FirstName != NEW.FirstName, CONCAT('\"', OLD.FirstName, '\" => \"', NEW.FirstName, '\", '), ''),
 		IF(OLD.LastName != NEW.LastName, CONCAT('\"', OLD.LastName, '\" => \"', NEW.LastName, '\", '), ''),
 		IF(OLD.PhoneNumber != NEW.PhoneNumber, CONCAT('\"', OLD.PhoneNumber, '\" => \"', NEW.PhoneNumber, '\", '), ''),
 		IF(OLD.Salary != NEW.Salary, CONCAT('\"', OLD.Salary, '\" => \"', NEW.Salary, '\", '), ''),
 		IF(OLD.Address != NEW.Address, CONCAT('\"', OLD.Address, '\" => \"', NEW.Address, '\", '), ''),
-		IF(OLD.Expirience != NEW.Expirience, CONCAT('\"', OLD.Expirience, '\" => \"', NEW.Expirience, '\", '), '')
+		IF(OLD.Expirience != NEW.Expirience, CONCAT('\"', OLD.Expirience, '\" => \"', NEW.Expirience, '\"'), '')
 	), NOW());
 
 CREATE TRIGGER TriggerDelete
 AFTER DELETE ON Lab2
 FOR EACH ROW
-	INSERT Log (IdEmployee, Description, OperationDate)
-	VALUES (NEW.EmployeeId, CONCAT('DELETE: ', NEW.FirstName, ' ', NEW.LastName), NOW());
-
-CREATE TRIGGER TriggerDelete
-AFTER DELETE ON Lab2
-FOR EACH ROW
-	INSERT Log (IdEmployee, Description, OperationDate)
-	VALUES (OLD.EmployeeId, CONCAT('DELETE: ', OLD.FirstName, ' ', OLD.LastName), NOW());
+	INSERT Log (IdEmployee, TypeOperation, Description, OperationDate)
+	VALUES (OLD.EmployeeId, 'DELETE', CONCAT('\"', OLD.FirstName, '\", \"',
+		OLD.LastName, '\", \"',
+		OLD.PhoneNumber, '\", \"',
+		OLD.Salary, '\", \"',
+		OLD.Address, '\", \"',
+		OLD.Expirience, '\"'), NOW());

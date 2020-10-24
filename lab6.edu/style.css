@@ -5,6 +5,21 @@ div.box {
 	padding: 15px;
 }
 
+div.log {
+	border-bottom:solid 1px #000;
+}
+
+table.header {
+	width:720px;
+	border-bottom:solid 1px #000;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+table.header td {
+	width: 360px;
+}
+
 table.query {
 	width:720px;
 	text-align: center;

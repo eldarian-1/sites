@@ -59,4 +59,36 @@ $selectAll = function(){
     mysqli_free_result($result);
 };
 
+$itemLog = function(
+	$IdLog,
+	$EmployeeId,
+	$TypeOperation,
+	$OperationDate,
+	$Description
+){
+	global $printId;
+?><div class="log">
+	<p>IdLog: <?=$IdLog?> | Type: <?=$TypeOperation?> | IdEmployee: <?=$EmployeeId?> | DateTime: <?=$OperationDate?></p>
+	<p>Description: <?=$Description?></p>
+</div><?
+};
+
+$allLogs = function(){
+	global $table, $link, $itemLog;
+	$result = mysqli_query($link, "SELECT * FROM Log");
+	if($result){
+		$n = mysqli_num_rows($result);
+		for($i = 0; $i < $n; ++$i){
+			$row = mysqli_fetch_assoc($result);
+			$itemLog(
+				$row["IdLog"],
+				$row["IdEmployee"],
+				$row["TypeOperation"],
+				$row["OperationDate"],
+				$row["Description"]);
+		}
+	}
+    mysqli_free_result($result);
+};
+
 ?>

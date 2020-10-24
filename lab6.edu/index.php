@@ -9,6 +9,11 @@ $initAction = function(){
 		$_GET["action"] = "view";
 };
 
+$initView = function(){
+	if(!isset($_GET["view"]))
+		$_GET["view"] = "main";
+};
+
 $updateTable = function(){
 	global $insertQuery, $updateQuery, $deleteQuery;
 	if($_GET["action"] == "new")
@@ -32,17 +37,17 @@ $updateTable = function(){
 		$deleteQuery($_GET["id"]);
 };
 
-$getAction = function(){
-	if($_GET["action"] == "view")
-		return "new";
-	elseif($_GET["action"] == "edit")
-		return "update&id={$_GET["id"]}";
-	else
-		header("Location: http://lab4.edu/");
+$getPage = function(){
+	global $mainPage, $logPage;
+	switch($_GET['view']){
+		case 'main': return $mainPage;
+		case 'log': return $logPage;
+	}
 };
 
 $initAction();
+$initView();
 $updateTable();
-$layout($getAction());
+$layout($getPage());
 
 ?>
