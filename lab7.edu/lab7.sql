@@ -1,6 +1,6 @@
-DROP VIEW PhoneBook;
-DROP VIEW ChangedEmployee;
-DROP VIEW UpdateStory;
+DROP VIEW Phones;
+DROP VIEW Changes;
+DROP VIEW Updates;
 
 CREATE VIEW Phones (FirstName, LastName, PhoneNumber)
 AS SELECT FirstName, LastName, PhoneNumber
@@ -13,4 +13,4 @@ FROM Log;
 CREATE VIEW Updates (IdEmployee, Count)
 AS SELECT IdEmployee, COUNT(IdEmployee)
 FROM Changes
-Group BY IdEmployee;
+GROUP BY IdEmployee;
